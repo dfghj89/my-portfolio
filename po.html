@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lương Anh Vũ - Video Editor & Content Creator Portfolio</title>
+    <!-- Fonts: Bebas Neue for massive headers, Inter for clean readable body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-outer: #D5D1C8; /* Darker beige for the outer space */
+            --bg-slide: #F4F2EC; /* Light warm beige for the slides */
+            --text-dark: #111111;
+            --border-color: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-outer);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+            padding: 60px 20px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1280px;
+            height: 720px; /* Fixed aspect ratio for presentation feel */
+            background-color: var(--bg-slide);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 2px solid var(--border-color);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: var(--bg-slide);
+            z-index: 10;
+        }
+        .nav-item {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        .nav-item:hover { opacity: 0.5; }
+
+        h1, h2, h3, .huge-text {
+            font-family: 'Bebas Neue', sans-serif;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            line-height: 0.9;
+        }
+        
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+            font-weight: 400;
+        }
+
+        img { filter: sepia(20%) contrast(90%); }
+
+        .cover-images {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            height: 380px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .cover-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-right: 2px solid var(--border-color);
+        }
+        .cover-images img:last-child { border-right: none; }
+
+        .cover-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 40px;
+            flex-grow: 1;
+        }
+        .cover-title {
+            font-size: 150px;
+            letter-spacing: 2px;
+            margin-bottom: -15px; 
+            max-width: 60%;
+            line-height: 0.85;
+        }
+        .cover-subtitle {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+        .cover-subtitle h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .cover-subtitle p {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .cover-subtitle .contact-info-small {
+            font-size: 11px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content-area {
+            display: flex;
+            flex-grow: 1;
+            height: calc(100% - 60px);
+        }
+        .split-left {
+            width: 45%;
+            border-right: 2px solid var(--border-color);
+            height: 100%;
+        }
+        .split-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .split-right {
+            width: 55%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .split-right h2 {
+            font-size: 100px;
+            margin-bottom: 30px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            flex-grow: 1;
+        }
+        .skill-item {
+            border-right: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+        .skill-item:last-child { border-right: none; }
+        .skill-item i { font-size: 50px; margin-bottom: 20px; color: var(--text-dark); }
+        .skill-item h4 { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 1px;}
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            flex-grow: 1;
+            background-color: var(--text-dark); /* Dark inverse section */
+            color: var(--bg-slide);
+        }
+        .exp-item {
+            border-right: 2px solid var(--bg-slide);
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .exp-item:last-child { border-right: none; }
+        .exp-item h2, .exp-item h3 { color: var(--bg-slide); }
+        .exp-item h2 { font-size: 80px; margin-bottom: 20px; }
+        .exp-item p { color: #ccc; font-size: 14px; }
+
+        .project-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 250px;
+            line-height: 0.8;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--text-dark);
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .role-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 6px 16px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .qr-section {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .qr-box {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 60px;
+            flex-grow: 1;
+            width: 100%;
+        }
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 14%;
+        }
+        .process-step h2 { font-size: 50px; margin-bottom: 10px; }
+        .process-arrow { font-size: 24px; color: var(--text-dark); }
+
+        .contact-img {
+            height: 400px;
+            border-bottom: 2px solid var(--border-color);
+        }
+        .contact-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .contact-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 60px;
+            flex-grow: 1;
+        }
+        .contact-bottom h2 { font-size: 110px; }
+        .contact-info { display: flex; gap: 50px; }
+        .info-block { display: flex; align-items: flex-start; gap: 15px; }
+        .info-block i { font-size: 24px; margin-top: 5px; }
+        .info-block h5 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .info-block p { font-size: 14px; font-weight: 500; }
+
+        /* General button */
+        .outline-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .outline-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--bg-slide);
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide" id="cover">
+    <div class="nav-bar">
+        <a href="#cover" class="nav-item">01. Cover</a>
+        <a href="#about" class="nav-item">02. About</a>
+        <a href="#skills" class="nav-item">03. Skills</a>
+        <a href="#experience" class="nav-item">04. Exp</a>
+        <a href="#projects" class="nav-item">05-08. Work</a>
+        <a href="#process" class="nav-item">09. Process</a>
+        <a href="#contact" class="nav-item">10. Contact</a>
+    </div>
+
+    <div class="cover-images">
+        <img src="https://i.pinimg.com/736x/a5/c8/59/a5c859b862faa9f67af2afbe9ad91e7e.jpg" alt="Portfolio Image">
+        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop" alt="Editing Workspace">
+        <img src="https://i.pinimg.com/736x/42/f2/4e/42f24e012d3ee33fe42b72c11c575ade.jpg" alt="Social Media Creation image">
+        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop" alt="Vintage Camera">
+    </div>
+
+    <div class="cover-bottom">
+        <h1 class="cover-title">Portfolio</h1>
+        <div class="cover-subtitle">
+            <h3>Lương Anh Vũ</h3>
+            <p>Video Editor • Content Creator</p>
+            <div class="contact-info-small">
+                📍 Hà Nội, Việt Nam<br>
+                📞 0356 401 989<br>
+                ✉️ luonganhvu.12a5.tnd@gmail.com
+            </div>
+            <p style="text-transform: none; font-style: italic;">"Creating engaging content through creative storytelling."</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide" id="about">
+    <div class="nav-bar">
+        <span>02. About Me</span>
+        <span>Portfolio 2026</span>
+    </div>
+    <div class="content-area">
+        <div class="split-left">
+            <img src="https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/541635209_783213600744549_7824846285930058542_n.jpg?stp=dst-jpg_tt6&cstp=mx1365x2048&ctp=s1365x2048&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF2SicPrQgfKV0N9tvAj8-syRbL2AIAIuHJFsvYAgAi4eyOdAFKEZ6FN0ki5ibxVJXkkiAd8uw9FTc_2T7iXnoF&_nc_ohc=3zBf1r36vF4Q7kNvwHeFXX3&_nc_oc=AdosKr0os1J4wybgso3BixYHyQySl17AHjDOhmraYAdm4SNZYUVd3MJeHG6vU5QjgCk&_nc_zt=23&_nc_ht=scontent.fhan2-3.fna&_nc_gid=0IYo4cgXepkEXHyg19cU8g&_nc_ss=7b2a8&oh=00_AQD4fbKdcjVGeAMLXwrXYfoJi-fq1dyjt0MB0iiJbFLD9Q&oe=6A4F259C" alt="Creative Working image">
+        </div>
+        <div class="split-right">
+            <h2>Giới thiệu</h2>
+            <p style="margin-bottom: 20px; max-width: 500px;">Xin chào, tôi là Lương Anh Vũ. Tôi là một Video Editor và Content Creator đam mê kể chuyện bằng hình ảnh. Với kinh nghiệm làm việc thực tế, tôi biến những ý tưởng thô sơ thành các tác phẩm truyền thông thu hút, giữ chân người xem ngay từ những giây đầu tiên.</p>
+            
+            <h3 style="font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; margin-top: 20px;">Mục Tiêu</h3>
+            <p style="max-width: 500px;">Sáng tạo ra những nội dung không chỉ bắt kịp xu hướng (trend) mà còn mang lại giá trị cốt lõi cho thương hiệu. Trở thành một người sản xuất nội dung toàn diện (Full-stack Content Creator) từ khâu lên ý tưởng, kịch bản, quay phim cho đến hậu kỳ hoàn chỉnh.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide" id="skills">
+    <div class="nav-bar">
+        <span>03. Skills & Tools</span>
+        <span>Portfolio 2026</span>
+    </div>
+    <div style="padding: 40px 60px; border-bottom: 2px solid var(--border-color);">
+        <h2>My Arsenal</h2>
+    </div>
+    <div class="skills-grid">
+        <div class="skill-item">
+            <i class="fa-solid fa-scissors"></i>
+            <h4>CapCut / Pr</h4>
+            <p>Video Editing</p>
+        </div>
+        <div class="skill-item">
+            <i class="fa-solid fa-palette"></i>
+            <h4>Canva / Ps</h4>
+            <p>Design</p>
+        </div>
+        <div class="skill-item">
+            <i class="fa-regular fa-lightbulb"></i>
+            <h4>Planning</h4>
+            <p>Content Strategy</p>
+        </div>
+        <div class="skill-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <h4>Social Media</h4>
+            <p>Trend Catching</p>
+        </div>
+        <div class="skill-item">
+            <i class="fa-solid fa-users"></i>
+            <h4>Teamwork</h4>
+            <p>Collaboration</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide" id="experience">
+    <div class="nav-bar">
+        <span>04. Experience</span>
+        <span>Portfolio 2026</span>
+    </div>
+    <div class="exp-grid">
+        <div class="exp-item">
+           
+</h3>
+
+<div style="height: 25px;"></div> 
+
+<h3 style="font-family: 'Inter', sans-serif; font-size: 14px; color: #888; letter-spacing: 4px; text-transform: uppercase; margin: 0; margin-bottom: 30px;">
+    Kinh nghiệm làm việc
+</h3>
+
+<h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 60px; margin: 0; letter-spacing: 2px; white-space: nowrap; text-transform: uppercase; color: #ffffff; line-height: 1;">
+    MÁY ẢNH CŨ HÀ NỘI
+</h2>
+
+<div style="height: 20px;"></div>
+
+<p style="font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; color: #ccc; max-width: 400px;">
+    Phụ trách sáng tạo nội dung, viết kịch bản review thiết bị và sản xuất video truyền thông chuyên nghiệp.
+</p>
+            
+        </div>
+        <div class="exp-item">
+            <h3 style="font-family: 'Inter', sans-serif; font-size: 14px; margin-bottom: 10px; color: #aaa;">Kinh nghiệm làm việc</h3>
+            <h2>WELO</h2>
+            <p>Đóng vai trò lên ý tưởng, kịch bản và sản xuất các chiến dịch Social Media, bắt trend và tăng tương tác nền tảng, in ấn sản phẩm truyền thông.</p>
+        </div>
+        <div class="exp-item">
+            <h3 style="
+    font-family: 'Inter', sans-serif; 
+    font-size: 14px; 
+    color: #888; 
+    letter-spacing: 4px; 
+    text-transform: uppercase; 
+    margin: 0;
+    margin-bottom: 30px; /* TẠO KHOẢNG CÁCH Ở ĐÂY */
+">
+    Kinh nghiệm làm việc
+</h3>
+
+<h2 style="
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 80px; 
+    margin: 0; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    color: #ffffff;
+    line-height: 0.9;
+">
+    HOÀNG KIÊN
+</h2>
+
+<div style="height: 20px;"></div> <p style="
+    font-family: 'Inter', sans-serif; 
+    font-size: 16px; 
+    line-height: 1.6; 
+    color: #ccc; 
+    max-width: 400px;
+">
+    Phối hợp triển khai các hoạt động marketing theo định hướng doanh nghiệp.
+</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide" id="projects">
+    <div class="nav-bar">
+        <span>05. Work</span>
+        <span>Chỉnh màu Sony</span>
+    </div>
+    <div class="project-number">01</div>
+    <div class="content-area">
+        <div class="split-left" style="width: 60%; position: relative;">
+            <!-- Thumbnail Placeholder -->
+            <img src="https://i.pinimg.com/736x/4d/db/84/4ddb84fc8d794a9a7d3a5b6971fd78df.jpg " alt="Sony A6400 Thumbnail">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 60px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <i class="fa-solid fa-circle-play"></i>
+            </div>
+        </div>
+        <div class="split-right" style="width: 40%; padding: 40px;">
+           <h3 style="
+    font-family: 'Inter', sans-serif; 
+    font-size: 14px; 
+    font-weight: 600; 
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0; 
+    margin-bottom: 40px; /* Tăng giá trị này để tạo khoảng cách lớn hơn */
+">
+    Sản phẩm
+</h3>
+
+<h2 style="
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 80px; 
+    margin: 0; 
+    line-height: 0.9;
+    text-transform: uppercase;
+">
+    CHỈNH MÀU<br>SONY
+</h2>
+            <div class="role-tags">
+                <span class="tag">Quay Phim</span>
+                <span class="tag">Edit Video</span>
+            </div>
+            
+            <p>Hướng dẫn quy trình chỉnh màu chuyên nghiệp cho máy ảnh Sony, tập trung vào việc tái tạo tone màu tự nhiên và tối ưu hóa dải nhạy sáng trong hậu kỳ.</p>
+            
+            <div class="qr-section" style="display: flex; align-items: center; gap: 20px;">
+    <!-- Khung chứa ảnh QR Code thực tế -->
+    <div class="qr-box" style="border: 2px dashed #333; padding: 10px; width: 120px; height: 120px; display: flex; align-items: center; justify-content: center;">
+        <a href="https://youtu.be/UW602GdKpl0?si=bDBB_tKf6v-sjgDa" target="_blank">
+            <img src="image_af64de.png" alt="QR Code Video" style="width: 100%; height: 100%; object-fit: contain;">
+        </a>
+    </div>
+
+    <!-- Phần văn bản và nút liên kết -->
+    <div>
+        <h4 style="font-family: 'Inter', sans-serif; font-size: 14px; margin-bottom: 10px; text-transform: uppercase;">Quét để xem Video</h4>
+        <a href="https://youtu.be/UW602GdKpl0?si=bDBB_tKf6v-sjgDa" 
+           target="_blank" 
+           class="outline-btn" 
+           style="padding: 8px 16px; font-size: 10px; display: inline-block; border: 1px solid #ccc; text-decoration: none; color: #333;">
+           Hoặc Click Link
+        </a>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="nav-bar">
+        <span>06. Work</span>
+        <span>NIKON ZF<br> review</span>
+    </div>
+    <div class="project-number">02</div>
+    <div class="content-area">
+        <div class="split-right" style="width: 40%; padding: 40px; border-right: 2px solid var(--border-color);">
+            <h3 style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 10px;">Sản phẩm</h3>
+            <h2>NIKON ZF <br> REVIEW </h2>
+            
+            <div class="role-tags">
+                <span class="tag">Edit Video</span>
+            </div>
+            
+            <p>Video là thước phim trải nghiệm thực tế đầy chân thực sau hơn 1 năm đồng hành cùng Nikon Zf qua từng góc phố Hà Nội, đánh giá chi tiết từ thiết kế cơ học giả phim đến sức mạnh quay chụp của bộ vi xử lý Expeed 7.</p>
+            
+            <div class="qr-section">
+                <div class="qr-box">
+                    <i class="fa-solid fa-qrcode" style="font-size: 40px; color: #ccc;"></i>
+                </div>
+                <div>
+         <div style="display: flex; align-items: center; gap: 20px;">
+    <!-- 1. Ô CHỨA ẢNH QR CODE (Bạn thay file ảnh QR của bạn vào chỗ src="1.png") -->
+    <div class="qr-box" style="border: 2px dashed #333; padding: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #fff;">
+        <a href="https://youtu.be/BWDekGFj_G4?si=pZD5Nq5xctXndgTz" target="_blank">
+            <img src="1.png" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+        </a>
+    </div>
+
+    <!-- 2. PHẦN CHỮ VÀ NÚT BẤM (Thay link YouTube của bạn vào thẻ href) -->
+    <div>
+        <h4 style="font-family: 'Inter', sans-serif; font-size: 13px; margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 0.05em;">Quét để xem Video</h4>
+        <a href="https://youtu.be/BWDekGFj_G4?si=pZD5Nq5xctXndgTz" 
+           target="_blank" 
+           class="outline-btn" 
+           style="padding: 6px 12px; font-size: 10px; display: inline-block; border: 1px solid #333; text-decoration: none; color: #333; text-transform: uppercase; font-weight: 600;">
+            Hoặc Click Link
+        </a>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+        <div class="split-left" style="width: 60%; position: relative; border-right: none;">
+            <!-- Thumbnail Placeholder -->
+            <img src="https://i.pinimg.com/1200x/20/2d/04/202d0416d5dff732b1fec64f6ac65292.jpg" alt="Canon M50 Thumbnail">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 60px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <i class="fa-solid fa-circle-play"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="nav-bar">
+        <span>07. Work</span>
+        <span>Sản phẩm tik tok </span>
+    </div>
+    <div class="project-number">03</div>
+    <div class="content-area">
+        <div class="split-left" style="width: 60%; position: relative;">
+            <!-- Thumbnail Placeholder -->
+            <img src="https://i.pinimg.com/736x/11/ef/18/11ef18d0eadcc0c0a500bc437e1c8bb8.jpg" alt="TikTok Trend Thumbnail">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 60px; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+                <i class="fa-solid fa-circle-play"></i>
+            </div>
+        </div>
+        <div class="split-right" style="width: 40%; padding: 40px;">
+            <h3 style="font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; margin-bottom: 10px;">Sản phẩm </h3>
+            <h2>Canon 7D </h2>
+            
+            <div class="role-tags">
+                <span class="tag">Idea</span>
+                <span class="tag">Quay </span>
+                <span class="tag">Capcut Edit</span>
+            </div>
+            
+            <p>Thử thách nhiếp ảnh đường phố ban đêm bằng thiết bị đời cũ. Yêu cầu làm chủ kỹ thuật phơi sáng trong môi trường tối, biến nhược điểm nhiễu hạt (noise) thành chất liệu hạt phim (grain) nghệ thuật và tạo nhịp điệu chuyển ảnh cuốn hút theo beat nhạc thịnh hành..</p>
+            
+           <div class="qr-section" style="display: flex; align-items: center; gap: 20px;">
+    <!-- Ô chứa ảnh QR Code thực tế lấy từ image_1cea64.png -->
+    <div class="qr-box" style="border: 2px dashed #333; padding: 8px; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; background: #fff;">
+        <a href="https://www.tiktok.com/@mayanhcuhanoi/video/7496872982522907924?is_from_webapp=1&sender_device=pc&web_id=7611176850009671175" target="_blank">
+            <img src="4.png" alt="TikTok QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+        </a>
+    </div>
+    
+    <!-- Phần văn bản và nút bấm liên kết trực tiếp -->
+    <div>
+        <h4 style="font-family: 'Inter', sans-serif; font-size: 14px; margin: 0 0 5px 0; text-transform: uppercase; font-weight: 700; color: #000;">Quét để xem Video</h4>
+        <a href="https://www.tiktok.com/@mayanhcuhanoi/video/7496872982522907924?is_from_webapp=1&sender_device=pc&web_id=7611176850009671175" 
+           target="_blank" 
+           class="outline-btn" 
+           style="padding: 8px 16px; font-size: 10px; display: inline-block; border: 1px solid #333; text-decoration: none; color: #333; text-transform: uppercase; font-weight: 600;">
+            Hoặc Click Link
+        </a>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide">
+    <div class="nav-bar">
+        <span>08. BTS</span>
+        <span>Behind The Scene</span>
+    </div>
+    <div style="padding: 30px 40px; border-bottom: 2px solid var(--border-color); display: flex; justify-content: space-between; align-items: flex-end;">
+        <h2 style="font-size: 80px; margin-bottom: -10px;">Behind The Scene</h2>
+        <p style="font-weight: 600; text-transform: uppercase;">Ảnh quay & làm việc thực tế</p>
+    </div>
+   <div class="cover-images" style="height: 100%; border-bottom: none;">
+    <!-- Bạn chỉ cần điền tên file ảnh (ví dụ: bts1.jpg) vào trong dấu ngoặc kép của src="" -->
+    <img src="11.png" alt="BTS 1">
+    <img src="22.png" alt="BTS 2">
+    <img src="33.png" alt="BTS 3">
+    <img src="44.png" alt="BTS 4">
+</div>
+</div>
+
+<div class="slide" id="process">
+    <div class="nav-bar">
+        <span>09. Process</span>
+        <span>How I Work</span>
+    </div>
+    <div style="padding: 40px 60px; border-bottom: 2px solid var(--border-color);">
+        <h2>Quy Trình Làm Việc</h2>
+        <p style="max-width: 600px;">Một nội dung tốt không chỉ đến từ sự ngẫu hứng, mà là kết quả của một quy trình làm việc chặt chẽ và chuyên nghiệp từ đầu đến cuối.</p>
+    </div>
+    <div class="process-flow">
+        <div class="process-step">
+            <h2>01</h2>
+            <p style="font-weight: 600; text-transform: uppercase;">Nhận Brief</p>
+        </div>
+        <i class="fa-solid fa-arrow-right process-arrow"></i>
+        
+        <div class="process-step">
+            <h2>02</h2>
+            <p style="font-weight: 600; text-transform: uppercase;">Lên Idea</p>
+        </div>
+        <i class="fa-solid fa-arrow-right process-arrow"></i>
+
+        <div class="process-step">
+            <h2>03</h2>
+            <p style="font-weight: 600; text-transform: uppercase;">Viết Script</p>
+        </div>
+        <i class="fa-solid fa-arrow-right process-arrow"></i>
+
+        <div class="process-step">
+            <h2>04</h2>
+            <p style="font-weight: 600; text-transform: uppercase;">Shoot (Quay)</p>
+        </div>
+        <i class="fa-solid fa-arrow-right process-arrow"></i>
+
+        <div class="process-step">
+            <h2>05</h2>
+            <p style="font-weight: 600; text-transform: uppercase;">Edit (Dựng)</p>
+        </div>
+        <i class="fa-solid fa-arrow-right process-arrow"></i>
+
+        <div class="process-step">
+            <h2>06</h2>
+            <p style="font-weight: 600; text-transform: uppercase;">Publish</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide" id="contact">
+    <div class="nav-bar">
+        <span>10. Contact</span>
+        <span>Let's Work Together</span>
+    </div>
+
+    <div class="contact-img">
+        <img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?q=80&w=1200&auto=format&fit=crop" alt="Let's Talk">
+    </div>
+
+    <div class="contact-bottom">
+        <h2 style="font-size: 100px; line-height: 0.9;">Contact</h2>
+        <div class="contact-info">
+            <div class="info-block">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <h5>Call / Zalo</h5>
+                    <p>0356 401 989</p>
+                </div>
+            </div>
+            <div class="info-block">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <h5>Mail</h5>
+                    <p>luonganhvu.12a5.tnd@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
